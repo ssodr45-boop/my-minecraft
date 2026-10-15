@@ -1,1 +1,24 @@
+name: Unzip Game and Build IPA
+
+on:
+  workflow_dispatch:
+
+jobs:
+  unzip-and-build:
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Unzip Source Code
+      run: |
+        unzip ios-build-action-master.zip
+        ls -la
+
+    - name: Upload Unzipped Project
+      uses: actions/upload-artifact@v4
+      with:
+        name: minecraft-ipa-file
+        path: .
 
